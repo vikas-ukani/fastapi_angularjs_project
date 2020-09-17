@@ -1,0 +1,8 @@
+.git
+/.git
+env
+/env
+__pycache__
+/__pycache__
+debug.log
+/debuug.log
