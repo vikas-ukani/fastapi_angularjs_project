@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    </head>
+
+    <body>
+        <div ng-app="app" ng-controller="HomeController">
+            <h1>Welcome html index file</h1>
+            <!-- <h3 ng-bind="message"></h3> -->
+
+            <p ng-id="response_message" ng-bind="response_message"></p>
+
+            <button ng-click=callAPIGet() name="button">Clock to call API Get</button>
+            <br>
+            <button ng-click=callAPIPost("data") name="button">Clock to call API Post</button>
+        </div>
+    </body>
+
+    <script>
+        var app = angular.module('app', []);
+        app.controller("HomeController", function ($scope, $http) {
+            $scope.message = "Welcome to FastAPI Angular App in HomeController Controller";
+            console.log("msg", $scope.message);
+
+            $scope.callAPIGet = function () {
+                let BASE = "http://127.0.0.1:8000/";
+                $http.get(BASE + "message").then(function (response) {
+                    $scope.response_message = response.data.message;
+                });
+            }
+
+            /* Post API */
+            $scope.callAPIPost = function (str) {
+                let BASE = "http://127.0.0.1:8000/";
+                console.log("Post API calling ", BASE);
+                $http.post(BASE + "strMessage/", {
+                    "name": str
+                }).then(function (response) {
+                    console.log("Res", response.data);
+                    $scope.response_message = response.data.name;
+                });
+
+            }
+        })
+    </script>
+
+</html>
