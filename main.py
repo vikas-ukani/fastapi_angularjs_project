@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
+#Importing necessary packages
+from fastapi import FastAPI, Requst, Form 
+from fasta pi.responses import HTMLResponse
 from typing import Optional
 
 from fastapi.staticfiles import StaticFiles
@@ -7,14 +8,14 @@ from fastapi.templating import Jinja2Templates
 
 from pydantic import BaseModel
 
-
+# Creating Request body class
 class RequestBody(BaseModel):
     name: str
     # description: Optional[str] = None
     # price: float
     # tax: Optional[float] = None
 
-
+# create an instant of an package
 app = FastAPI()
 
 app.mount('/static', StaticFiles(directory='static'), name='static')
