@@ -18,12 +18,17 @@ class RequestBody(BaseModel):
 # create an instant of an package
 app = FastAPI()
 
+# Connecting static files path to main url
 app.mount('/static', StaticFiles(directory='static'), name='static')
+# creating html as templates path
 templates = Jinja2Templates(directory='templates')
 
 
 @app.get('/home', response_class=HTMLResponse)
 async def home(request: Request):
+    '''
+    This is home page url as a Landing Page
+    '''
     return templates.TemplateResponse("index.html", {"request": request})
     # return {"message": "Welcome to the Fast API Development site"}
 
